@@ -23,7 +23,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Set some variables
         run: |
-          echo SITE_URL=hehehe
+          echo SITE_URL=hehehe >> $GITHUB_ENV
+          echo SITE_URL=hehehe > .env
           ls -la
       - name: Cache ENV variables
         id: cache-env-variables
@@ -45,7 +46,9 @@ jobs:
         id: cache-restore-env-variables
         uses: actions/cache@v2
         with:
-          path: .env
+          path: |
+            .env
+            $GITHUB_ENV
           key: ${{ github.ref }}
       - name: Display value
         run: |
