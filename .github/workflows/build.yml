@@ -41,4 +41,4 @@ jobs:
           key: ${{ github.ref }}
       - name: Display value
         run: |
-          echo ::notice::${{ SITE_URL }}
+          echo ::notice::${{ env.SITE_URL }}
