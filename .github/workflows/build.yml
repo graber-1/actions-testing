@@ -32,6 +32,7 @@ jobs:
         with:
           path: |
             .env
+            $GITHUB_ENV
           key: ${{ github.ref }}
       - name: Check structure
         run: |
@@ -53,6 +54,7 @@ jobs:
         with:
           path: |
             .env
+            $GITHUB_ENV
           key: ${{ github.ref }}
       - name: Display value
         run: |
