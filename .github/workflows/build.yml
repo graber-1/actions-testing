@@ -63,10 +63,11 @@ jobs:
       output1: ${{steps.step1.outputs.test}}
       output2: ${{steps.step2.outputs.test}}
     steps:
+      - name: Set global
+        run: echo HELLO_ENV=hello >> $GITHUB_ENV
       - name: Step 1
         id: step1
         run: |
-          echo HELLO_ENV=hello >> $GITHUB_ENV
           echo "::set-output name=test::${{ env.HELLO_ENV }}"
       - name: Step 2
         id: step2
