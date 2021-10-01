@@ -48,10 +48,8 @@ jobs:
         with:
           path: |
             .env
-            $GITHUB_ENV
           key: ${{ github.ref }}
       - name: Display value
         run: |
           echo '::notice::Env value: ${{ env.SITE_URL }}'
-          echo '::notice::Some message.'
           ls -la
