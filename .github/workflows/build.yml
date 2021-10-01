@@ -31,7 +31,6 @@ jobs:
         with:
           name: env
           path: .env
-        retention-days: 1
       - name: Check structure
         run: |
           ls -la
