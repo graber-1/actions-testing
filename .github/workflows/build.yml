@@ -26,14 +26,12 @@ jobs:
           echo SITE_URL=hehehe >> $GITHUB_ENV
           echo SITE_URL=hehehe > .env
           ls -la
-      - name: Cache ENV variables
-        id: cache-env-variables
-        uses: actions/cache@v2
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
         with:
-          path: |
-            .env
-            $GITHUB_ENV
-          key: ${{ github.ref }}
+          name: env
+          path: .env
+        retention-days: 1
       - name: Check structure
         run: |
           ls -la
@@ -47,15 +45,10 @@ jobs:
       - name: Prepare structure
         run: |
           mkdir test
-          touch .env
-      - name: Restore ENV variables
-        id: cache-restore-env-variables
-        uses: actions/cache@v2
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
         with:
-          path: |
-            .env
-            $GITHUB_ENV
-          key: ${{ github.ref }}
+          name: env
       - name: Display value
         run: |
           echo '::notice::Env value: ${{ env.SITE_URL }}'
