@@ -30,7 +30,8 @@ jobs:
         id: cache-env-variables
         uses: actions/cache@v2
         with:
-          path: .env
+          path: |
+            .env
           key: ${{ github.ref }}
       - name: Check structure
         run: |
@@ -42,6 +43,10 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
+      - name: Prepare structure
+        run: |
+          mkdir test
+          touch .env
       - name: Restore ENV variables
         id: cache-restore-env-variables
         uses: actions/cache@v2
