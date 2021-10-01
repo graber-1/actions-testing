@@ -26,7 +26,7 @@ jobs:
           echo SITE_URL=hehehe >> $GITHUB_ENV
           echo SITE_URL=hehehe > .env
           ls -la
-      - name: Upload Artifact
+      - name: Upload env
         uses: actions/upload-artifact@v2
         with:
           name: env
@@ -41,13 +41,13 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-      - name: Prepare structure
-        run: |
-          mkdir test
-      - name: Download a single artifact
+      - name: Download env
         uses: actions/download-artifact@v2
         with:
           name: env
+      - name: Add to environment variables
+        run: |
+          cat .env >> $GITHUB_ENV
       - name: Display value
         run: |
           echo '::notice::Env value: ${{ env.SITE_URL }}'
