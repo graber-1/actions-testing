@@ -19,6 +19,8 @@ jobs:
         uses: styfle/cancel-workflow-action@0.5.0
         with:
           access_token: ${{secrets.GITHUB_TOKEN}}
+      - name: Checkout the code
+        uses: actions/checkout@v2
       - name: Set some variables
         run: |
           echo SITE_URL=hahaha
@@ -33,6 +35,8 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [test-1]
     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
       - name: Restore ENV variables
         id: cache-restore-env-variables
         uses: actions/cache@v2
