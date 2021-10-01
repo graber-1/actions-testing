@@ -24,12 +24,16 @@ jobs:
       - name: Set some variables
         run: |
           echo SITE_URL=hehehe
+          ls -la
       - name: Cache ENV variables
         id: cache-env-variables
         uses: actions/cache@v2
         with:
           path: .env
           key: ${{ github.ref }}
+      - name: Check structure
+        run: |
+          ls -la
   test-2:
     name: Testing 2
     runs-on: ubuntu-20.04
@@ -45,5 +49,6 @@ jobs:
           key: ${{ github.ref }}
       - name: Display value
         run: |
-          echo '::notice::${{ env.SITE_URL }}'
+          echo '::notice::Env value: ${{ env.SITE_URL }}'
           echo '::notice::Some message.'
+          ls -la
